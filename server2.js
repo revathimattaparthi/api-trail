@@ -2,28 +2,29 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var PORT = process.env.PORT || 8080;
-var todoNextId = 1;
-todos =[];
+var doNextId = 1;
+	 dos =[];
 
 app.get('/', function(req, res){
 	res.send('Todo API Root');
 });
  app.use(bodyParser.json());
 // get/todos
-app.get('/todos', function(req, res){
-	res.json(todos);
+app.get('/dos', function(req, res){
+	res.json(dos);
 });
 
-// get/todo/:id
+// get/do/:id
 
-app.get('/todos/:id', function(req, res){
+app.get('/dos/:id', function(req, res){
 
-	var todoId = req.params.id;
+	var doId = req.params.id;
 	var matchedobj;
 
-	todos.forEach(function (todo){
-		if(parseInt(todoId) === todo.id){
-			matchedobj = todo;
+	dos.forEach(function(doss) {
+
+		if(parseInt(doId) === doss.id){
+			matchedobj = doss;
 		}
 	});
 	 if(matchedobj){
@@ -31,12 +32,12 @@ app.get('/todos/:id', function(req, res){
 	 } else {
 	 	res.status(404).send();
 	 }
-});
 
-app.post('/todos', function(req, res){
+});
+app.post('/dos', function(req, res){
 	var body = req.body;
-	 body.id = todoNextId++;
-	todos.push(body);
+	 body.id = doNextId++;
+	dos.push(body);
 	res.json(body);
 
 });
